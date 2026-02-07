@@ -12,8 +12,58 @@
       height: 100%;
       background: #000;
     }
-  </style>
+    :root {
+      --bg: #000;
+      --fg: #fff;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .hero {
+      width: 100%;
+      padding-top: 4rem;
+      text-align: center;
+    }
+
+    .logo-text {
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      position: relative;
+      animation: float 4s ease-in-out infinite, glow 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 8px rgba(255,255,255,0.2);
+      }
+      to {
+        text-shadow: 0 0 24px rgba(255,255,255,0.6);
+      }
+    }
+
+</style>
 </head>
 <body>
+  <header class="hero">
+    <h1 class="logo-text">CRANUS GAMES</h1>
+  </header>
+
+  <script>
+    // Simple JS hook reserved for future interactions
+  </script>
 </body>
 </html>

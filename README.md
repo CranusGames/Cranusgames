@@ -11,12 +11,10 @@ https://cranus.itch.io/
 📱 Google Play Store
 https://play.google.com/store/apps/developer?id=Cranus+Games
 
-(örnek link – kendi developer linkini koy)
-
 📺 YouTube
-https://www.youtube.com/@cranusgames
+https://www.youtube.com/@cranuss
 
-(örnek format)
+
 
 🛠️ Currently working on
 – Indie game prototypes

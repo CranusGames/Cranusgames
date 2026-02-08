@@ -7,46 +7,58 @@
 
 <style>
 :root{
-  --bg:#0b0b0b;
   --fg:#ffffff;
-  --muted:rgba(255,255,255,.65);
-  --card:#151515;
-  --border:rgba(255,255,255,.08);
-  --accent:#ffffff;
+  --muted:rgba(255,255,255,.7);
+  --card:rgba(255,255,255,.08);
+  --border:rgba(255,255,255,.15);
 }
 
 *{box-sizing:border-box}
 
 html,body{
   margin:0;
-  background:var(--bg);
   color:var(--fg);
   font-family:Inter,system-ui,sans-serif;
 }
 
-a{color:inherit;text-decoration:none}
+/* BACKGROUND */
+body{
+  background:
+    radial-gradient(1200px 600px at 70% -10%, #6b3fa0 0%, transparent 60%),
+    linear-gradient(180deg, #2b0a3d 0%, #090010 100%);
+  min-height:100vh;
+}
 
-/* LAYOUT */
+/* SNOW */
+#snow{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* CONTENT */
 .wrapper{
   max-width:1100px;
   margin:0 auto;
   padding:4rem 1.5rem;
+  position:relative;
+  z-index:1;
 }
 
 /* HEADER */
 header{
   padding:6rem 1.5rem 4rem;
-  border-bottom:1px solid var(--border);
 }
 
 header h1{
-  font-size:clamp(2.2rem,5vw,3.2rem);
+  font-size:clamp(2.4rem,5vw,3.4rem);
   margin:0;
 }
 
 header p{
-  margin-top:1rem;
   max-width:600px;
+  margin-top:1rem;
   color:var(--muted);
   line-height:1.6;
 }
@@ -58,28 +70,30 @@ section{
 
 .section-title{
   font-size:1.4rem;
-  margin-bottom:2rem;
   letter-spacing:.08em;
+  margin-bottom:2rem;
 }
 
-/* PROJECT GRID */
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:1.5rem;
 }
 
+/* CARD */
 .card{
   background:var(--card);
+  backdrop-filter:blur(14px);
   border:1px solid var(--border);
-  border-radius:12px;
-  padding:1.5rem;
-  transition:.25s;
+  border-radius:16px;
+  padding:1.6rem;
+  transition:.3s;
 }
 
 .card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(255,255,255,.25);
+  transform:translateY(-8px);
+  background:rgba(255,255,255,.12);
 }
 
 .card h3{
@@ -92,10 +106,26 @@ section{
   line-height:1.5;
 }
 
-.card .links{
-  margin-top:1rem;
-  font-size:.8rem;
-  opacity:.85;
+/* LINKS */
+.links{
+  margin-top:1.2rem;
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.links a{
+  font-size:.75rem;
+  letter-spacing:.12em;
+  padding:.45rem .9rem;
+  border:1px solid var(--border);
+  border-radius:999px;
+  transition:.25s;
+}
+
+.links a:hover{
+  background:#fff;
+  color:#000;
 }
 
 /* DOWNLOAD */
@@ -112,109 +142,143 @@ section{
 
 .download a{
   display:inline-block;
-  margin-top:1.8rem;
-  padding:.9rem 2.2rem;
-  border:1px solid var(--fg);
+  margin-top:2rem;
+  padding:1rem 2.4rem;
   border-radius:999px;
+  border:1px solid #fff;
   letter-spacing:.15em;
   font-size:.85rem;
   transition:.25s;
 }
 
 .download a:hover{
-  background:var(--fg);
+  background:#fff;
   color:#000;
 }
 
 /* FOOTER */
 footer{
-  margin-top:5rem;
-  padding:2rem 0;
+  text-align:center;
   font-size:.8rem;
   color:var(--muted);
-  text-align:center;
+  padding:3rem 0;
 }
 </style>
 </head>
 
 <body>
 
+<canvas id="snow"></canvas>
+
 <header>
   <div class="wrapper">
     <h1>CRANUS GAMES</h1>
     <p>
-      Independent game developer.  
-      Focused on atmosphere, mechanics and small-scope but polished experiences.
-      Unity 기반 PC ve mobil oyunlar geliştiriyorum.
+      Independent game developer focused on atmosphere, mechanics
+      and small but polished experiences.
     </p>
   </div>
 </header>
 
 <main class="wrapper">
 
-  <section>
-    <h2 class="section-title">PROJECTS</h2>
-    <div class="grid">
+<section>
+  <h2 class="section-title">PROJECTS</h2>
+  <div class="grid">
 
-      <div class="card">
-        <h3>Project Name</h3>
-        <p>
-          Kısa açıklama. Oyunun türü, amacı ve dikkat çeken özelliği.
-        </p>
-        <div class="links">
-          itch.io · Download · GitHub
-        </div>
+    <div class="card">
+      <h3>Project Name</h3>
+      <p>Oyunun kısa açıklaması buraya.</p>
+      <div class="links">
+        <a href="ITCH_LINK" target="_blank">itch.io</a>
+        <a href="DOWNLOAD_LINK" target="_blank">download</a>
+        <a href="GITHUB_LINK" target="_blank">github</a>
       </div>
-
-      <div class="card">
-        <h3>Another Game</h3>
-        <p>
-          Atmosferik, hikâye odaklı veya mekanik temelli açıklama.
-        </p>
-        <div class="links">
-          itch.io · Trailer
-        </div>
-      </div>
-
     </div>
-  </section>
 
-  <section>
-    <h2 class="section-title">GAME JAM PROJECTS</h2>
-    <div class="grid">
-
-      <div class="card">
-        <h3>48h Game Jam</h3>
-        <p>
-          Kısıtlı sürede geliştirilen deneysel proje.
-        </p>
+    <div class="card">
+      <h3>Another Game</h3>
+      <p>Başka bir proje açıklaması.</p>
+      <div class="links">
+        <a href="#">itch.io</a>
+        <a href="#">trailer</a>
       </div>
-
-      <div class="card">
-        <h3>One Day Prototype</h3>
-        <p>
-          Tek mekanik üzerine kurulu hızlı üretim.
-        </p>
-      </div>
-
     </div>
-  </section>
 
-  <section class="download">
-    <h2 class="section-title">LATEST GAME</h2>
-    <p>
-      En son tamamladığım oyunu buradan indirebilirsiniz.
-    </p>
-    <a href="#">
-      DOWNLOAD GAME
-    </a>
-  </section>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">GAME JAM PROJECTS</h2>
+  <div class="grid">
+
+    <div class="card">
+      <h3>48h Game Jam</h3>
+      <p>Kısıtlı sürede geliştirilen proje.</p>
+      <div class="links">
+        <a href="#">https://cranus.itch.io/dream-land</a>
+        <a href="#">https://cranus.itch.io/what-the-duck</a>
+        <a href="#">https://cranus.itch.io/pancake</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="download">
+  <h2 class="section-title">LATEST GAME</h2>
+  <p>En son oyunu buradan indirebilirsin.</p>
+  <a href="SON_OYUN_LINKI">DOWNLOAD GAME</a>
+</section>
 
 </main>
 
 <footer>
   © 2026 CRANUS GAMES
 </footer>
+
+<script>
+/* SNOW EFFECT */
+const canvas=document.getElementById("snow");
+const ctx=canvas.getContext("2d");
+let w,h;
+const flakes=[];
+
+function resize(){
+  w=canvas.width=window.innerWidth;
+  h=canvas.height=window.innerHeight;
+}
+addEventListener("resize",resize);
+resize();
+
+for(let i=0;i<180;i++){
+  flakes.push({
+    x:Math.random()*w,
+    y:Math.random()*h,
+    r:Math.random()*2+0.5,
+    v:Math.random()*0.6+0.2,
+    d:Math.random()*0.5
+  });
+}
+
+function snow(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle="rgba(255,255,255,.6)";
+  for(const f of flakes){
+    ctx.beginPath();
+    ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
+    ctx.fill();
+    f.y+=f.v;
+    f.x+=Math.sin(f.y*0.01)*f.d;
+    if(f.y>h){
+      f.y=-5;
+      f.x=Math.random()*w;
+    }
+  }
+  requestAnimationFrame(snow);
+}
+snow();
+</script>
 
 </body>
 </html>

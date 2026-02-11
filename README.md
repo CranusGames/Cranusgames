@@ -21,12 +21,6 @@ https://www.youtube.com/@cranuss
 – Experimental gameplay mechanics
 – Mobile & PC game projects
 
-🧠 Focus areas
-– Gameplay programming
-– Indie game design
-– Minimal & atmospheric experiences
-– Rapid prototyping
-
 🧰 Tools & Technologies
 Unity · C# · Game Design · Mobile Development · Git · Indie Publishing
 

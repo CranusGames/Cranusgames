@@ -14,8 +14,6 @@ https://play.google.com/store/apps/developer?id=Cranus+Games
 📺 YouTube
 https://www.youtube.com/@cranuss
 
-
-
 🛠️ Currently working on
 – Indie game prototypes
 – Experimental gameplay mechanics

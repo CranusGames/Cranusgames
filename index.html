@@ -112,9 +112,44 @@ body{
   opacity:.85;
 }
 
+/* MÜZİK ALANI */
+.music-box{
+  margin-top:80px;
+  margin-bottom:40px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+  background:rgba(255,255,255,0.08);
+  padding:14px 22px;
+  border-radius:40px;
+  backdrop-filter:blur(8px);
+}
+
+#musicBtn{
+  padding:10px 20px;
+  border:none;
+  border-radius:25px;
+  background:#ff8ec7;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.3s;
+}
+
+#musicBtn:hover{
+  background:#ff6fb5;
+}
+
+.music-text{
+  font-size:.9rem;
+  color:#ffffff;
+  opacity:.85;
+}
+
 /* MANGA PANELLER */
 .manga-section{
-  margin-top:300px;
+  margin-top:200px;
 }
 
 .panel{
@@ -163,6 +198,14 @@ body{
   <div class="subtitle">Today is your special day.</div>
   <div class="subtitle">I hope you have a wonderful year ahead filled with joy and success.</div>
 
+  <!-- MÜZİK BUTONU -->
+  <div class="music-box">
+    <button id="musicBtn">🎵 Müziği Başlat</button>
+    <div class="music-text">
+      Sayfayı gezerken arka planda müzik çalacaktır.
+    </div>
+  </div>
+
   <div class="manga-section">
     <div class="panel"><img src="images/baslik.png"></div>
     <div class="panel"><img src="images/1.png"></div>
@@ -190,7 +233,26 @@ body{
 
 </div>
 
+<audio id="bgMusic" loop>
+  <source src="muzik.mp3" type="audio/mpeg">
+</audio>
+
 <script>
+/* MÜZİK KONTROL */
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
+
+btn.addEventListener("click", () => {
+  if(music.paused){
+    music.play();
+    btn.textContent = "⏸ Müziği Durdur";
+  } else {
+    music.pause();
+    btn.textContent = "🎵 Müziği Başlat";
+  }
+});
+
+/* SAKURA */
 const layers = {
   back: document.querySelector(".back"),
   mid: document.querySelector(".mid"),
@@ -203,7 +265,6 @@ let flowerCount = 0;
 
 function createFlower(layerName, speedMultiplier, sizeMultiplier){
   if (flowerCount >= MAX_FLOWERS) return;
-
   flowerCount++;
 
   const flower = document.createElement("div");
@@ -218,7 +279,6 @@ function createFlower(layerName, speedMultiplier, sizeMultiplier){
 
   const speed = (0.2 + Math.random()*0.4) * speedMultiplier;
   const drift = 0.3 + Math.random()*0.4;
-  const rotationSpeed = (Math.random() - 0.5) * 0.8;
   let rotation = Math.random()*360;
 
   flower.innerHTML = `
@@ -239,7 +299,7 @@ function createFlower(layerName, speedMultiplier, sizeMultiplier){
   function animate(){
     y += speed;
     x += Math.sin(y * 0.01) * drift;
-    rotation += rotationSpeed;
+    rotation += 0.5;
 
     flower.style.transform =
       `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
@@ -259,7 +319,6 @@ function spawnLoop(){
   createFlower("back", 0.6, 0.7);
   createFlower("mid", 1, 1);
   createFlower("front", 1.3, 1.2);
-
   setTimeout(spawnLoop, isMobile ? 900 : 450);
 }
 

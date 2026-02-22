@@ -13,18 +13,15 @@
 }
 
 body{
-  height:100vh;
-  overflow:hidden;
+  min-height:100vh;
   background:
     radial-gradient(circle at 50% 20%, rgba(255,255,255,0.08), transparent 60%),
     linear-gradient(to bottom, #4b6cb7 0%, #2f4a91 40%, #182848 100%);
   font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
+  overflow-x:hidden;
 }
 
-/* SAKURA KATMANLARI */
+/* SAKURA */
 .layer{
   position:fixed;
   top:0;
@@ -32,6 +29,7 @@ body{
   width:100%;
   height:100%;
   pointer-events:none;
+  z-index:1;
 }
 
 .flower{
@@ -49,45 +47,47 @@ body{
   height:100%;
 }
 
-/* İÇERİK */
-.content{
+/* ANA İÇERİK */
+.wrapper{
   position:relative;
   z-index:10;
+  max-width:600px;
+  margin:0 auto;
+  padding:120px 20px 60px 20px;
   text-align:center;
-  margin-top:80px;
 }
 
 /* MUM */
 .candle{
   position:relative;
-  width:14px;
-  height:80px;
-  background:linear-gradient(to bottom,#fff,#e8e8e8);
-  border-radius:4px;
+  width:16px;
+  height:110px;
+  background:linear-gradient(to bottom,#ffffff,#e8e8e8);
+  border-radius:6px;
   margin:0 auto;
 }
 
 .wick{
   position:absolute;
-  top:-8px;
+  top:-10px;
   left:50%;
   width:2px;
-  height:10px;
+  height:12px;
   background:#222;
   transform:translateX(-50%);
 }
 
 .flame{
   position:absolute;
-  top:-32px;
+  top:-40px;
   left:50%;
-  width:20px;
-  height:30px;
+  width:26px;
+  height:38px;
   background:radial-gradient(circle at 50% 60%, #fff 0%, #ffd27a 40%, #ff8a00 70%, transparent 80%);
-  border-radius:50% 50% 50% 50%;
+  border-radius:50%;
   transform:translateX(-50%);
   animation:flicker .15s infinite alternate;
-  filter:blur(0.5px);
+  filter:blur(0.6px);
 }
 
 @keyframes flicker{
@@ -96,44 +96,64 @@ body{
   100%{ transform:translateX(-50%) scale(.95) rotate(-1deg); opacity:.85; }
 }
 
-/* Yazı */
+/* YAZI */
 .title{
-  margin-top:40px;
+  margin-top:50px;
   font-size:clamp(1.8rem,4vw,2.5rem);
   letter-spacing:.15em;
   color:#ffffff;
   text-shadow:0 0 15px rgba(255,255,255,.4);
-  opacity:0;
-  animation:fadeIn 2s ease forwards;
-  animation-delay:.8s;
 }
 
 .subtitle{
   margin-top:15px;
   font-size:1rem;
-  opacity:.8;
   color:#eaeaea;
-  opacity:0;
-  animation:fadeIn 2s ease forwards;
-  animation-delay:1.5s;
+  opacity:.85;
 }
 
-@keyframes fadeIn{
-  to{ opacity:1; transform:translateY(0); }
-  from{ opacity:0; transform:translateY(20px); }
+/* MANGA PANELLER */
+.manga-section{
+  margin-top:80px;
+}
+
+.panel{
+  width:100%;
+  margin-bottom:40px;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 20px 40px rgba(0,0,0,.4);
+  transform:translateY(40px);
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+}
+
+.panel:nth-child(2){ animation-delay:.2s; }
+.panel:nth-child(3){ animation-delay:.4s; }
+.panel:nth-child(4){ animation-delay:.6s; }
+
+.panel img{
+  width:100%;
+  display:block;
+}
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- Sakura -->
 <div class="layer back"></div>
 <div class="layer mid"></div>
 <div class="layer front"></div>
 
-<!-- Üst İçerik -->
-<div class="content">
+<div class="wrapper">
+
   <div class="candle">
     <div class="wick"></div>
     <div class="flame"></div>
@@ -141,6 +161,23 @@ body{
 
   <div class="title">Happy Birthday</div>
   <div class="subtitle">Today is your special day.</div>
+
+  <div class="manga-section">
+
+    <div class="panel">
+      <img src="images/baslik.png" alt="Manga Panel 1">
+    </div>
+
+    <div class="panel">
+      <img src="images/2.jpg" alt="Manga Panel 2">
+    </div>
+
+    <div class="panel">
+      <img src="images/3.jpg" alt="Manga Panel 3">
+    </div>
+
+  </div>
+
 </div>
 
 <script>
